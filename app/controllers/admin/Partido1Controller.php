@@ -85,7 +85,7 @@ class Partido1Controller extends \BaseController {
         else
         {
             // En caso de error regresa a la acción create con los datos y los errores encontrados
-			return Redirect::route('admin.partido.create')->withInput()->withErrors($partido->errors);
+			return Redirect::route('admin.partido.create',array('equipos',$equipos))->withInput()->withErrors($partido->errors);
 			//->with('equipos', $equipos);				
         }
 	}

@@ -14,6 +14,22 @@
 
 @section ('title') Crear partido @stop
 
+
+@section ('script')
+
+  $(document).ready(function(){
+    $("#boton").click(function() {
+      if($("#selEquipoLocal").val() == $("#selEquipoVisitante").val()){
+      alert("los valores son iguales");
+      return false; 
+      }
+     
+    });
+  });
+
+@stop
+
+
 @section ('content')
 
 <h1>Crear partido para la fecha {{$fecha_id}}</h1>
@@ -48,7 +64,7 @@
 
     <div class="form-group col-md-4">
         {{ Form::label('equipoLocal', 'equipoLocal') }}
-        <select class="form-control" name="equipoLocal">
+        <select id="selEquipoLocal" class="form-control" name="equipoLocal">
             @foreach($equipos as $equipo)
               <option value="{{$equipo->id}}">{{$equipo->nombreEquipo}}</option>
             @endforeach 
@@ -61,14 +77,9 @@
         {{ Form::text('golEquipoLocal', Input::old('golEquipoLocal'), array('class' => 'form-control')) }}
     </div>
 
-    <div class="form-group col-md-4">
-        {{ Form::label('equipoVisitante', 'equipoVisitante') }}
-        <select class="form-control" name="equipoVisitante">
-            @foreach($equipos as $equipo)
-              <option value="{{$equipo->id}}">{{$equipo->nombreEquipo}}</option>
-            @endforeach 
-        </select>
-    </div>
+    
+
+    {{ Form::select('equipoVisitante', $equipos) }}
 
     <div class="form-group col-md-4">
         {{ Form::label('golEquipoVisitante', 'Set Equipo Visitante') }}
@@ -76,16 +87,12 @@
     </div>
 
 
-    
 
-
-    
-
-    
+  
 
   </div>
 
-  {{ Form::button($action , array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
+  {{ Form::button($action , array('type' => 'submit', 'class' => 'btn btn-primary','id'=>'boton')) }}    
   
 {{ Form::close() }}
 

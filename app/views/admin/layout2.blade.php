@@ -52,6 +52,8 @@
       });
     </script>
 
+    @script
+
 </head>
 
 <body>
